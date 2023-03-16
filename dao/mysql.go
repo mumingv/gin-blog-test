@@ -2,41 +2,44 @@ package dao
 
 import (
 	"fmt"
-
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/mumingv/gin-blog/settings"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
-// GORM 来访问MySQL
 var (
 	DB *gorm.DB
 )
 
 func InitMySQL(cfg *settings.MySQLConfig) (err error) {
-	//连接mysql
+	// 连接 mysql
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.DB)
-	DB, err = gorm.Open("mysql", dsn)
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+			TablePrefix:   "tb_",
+		},
+	})
 	if err != nil {
 		return
 	}
-	if err := DB.DB().Ping(); err != nil {
+
+	sqlDB, err := DB.DB()
+	if err != nil {
+		return err
+	}
+	if err := sqlDB.Ping(); err != nil {
 		fmt.Println("连接MySQL失败")
 	}
-	DB.LogMode(true)
 
-	//禁用复数形式
-	DB.SingularTable(true)
-
-	//为表名添加前缀
-	// models 定义的数据库影射struct －> MySQL 表
-	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
-		return "tb_" + defaultTableName
-	}
 	return nil
 }
 
 func Close() {
-	DB.Close()
+	sqlDB, _ := DB.DB()
+	sqlDB.Close()
 }

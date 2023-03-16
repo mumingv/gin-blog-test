@@ -6,10 +6,11 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/gin-contrib/sessions v0.0.5
 	github.com/gin-gonic/gin v1.9.0
-	github.com/jinzhu/gorm v1.9.16
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/spf13/viper v1.15.0
 	go.uber.org/zap v1.24.0
+	gorm.io/driver/mysql v1.4.7
+	gorm.io/gorm v1.23.8
 )
 
 require (
@@ -20,7 +21,7 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.11.2 // indirect
-	github.com/go-sql-driver/mysql v1.5.0 // indirect
+	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
 	github.com/gorilla/context v1.1.1 // indirect
@@ -28,6 +29,7 @@ require (
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect

@@ -30,7 +30,8 @@ func main() {
 	}
 	defer dao.Close() // 程序退出关闭数据库连接
 	// 模型绑定
-	dao.DB.AutoMigrate(new(models.User),
+	dao.DB.Set("gorm:table_options", "ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4").AutoMigrate(
+		new(models.User),
 		new(models.Config))
 
 	// 注册路由

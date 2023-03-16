@@ -4,7 +4,7 @@ import "github.com/mumingv/gin-blog/dao"
 
 func Count(value interface{}) (int, error) {
 
-	var total int = 0
+	var total int64 = 0
 	dao.DB.Model(value).Count(&total)
-	return total, nil
+	return int(total), nil
 }
