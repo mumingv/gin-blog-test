@@ -1,0 +1,18 @@
+mode: "dev"
+port: 9002
+
+log:
+  level: "debug"
+  filename: "./log/gin-blog.log"
+  max_size: 1000
+  max_age: 3600
+  max_backups: 5
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: 12345678
+  db: gin_blog
+  max_open_conns: 100
+  max_idle_conns: 20
