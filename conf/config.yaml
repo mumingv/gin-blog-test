@@ -1,5 +1,5 @@
 mode: "dev"
-port: 9002
+port: 9004
 
 log:
   level: "debug"
@@ -13,6 +13,6 @@ mysql:
   port: 3306
   user: root
   password: 12345678
-  db: gin_blog
+  db: gin_blog_test
   max_open_conns: 100
   max_idle_conns: 20

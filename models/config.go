@@ -1,6 +1,8 @@
 package models
 
-import "github.com/mumingv/gin-blog/dao"
+import (
+	"github.com/mumingv/gin-blog/dao"
+)
 
 type Config struct {
 	Id    int
